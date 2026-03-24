@@ -3,8 +3,10 @@ import logging
 from github_client import GitHubClient
 from code_parser import extract_python_methods, extract_java_methods
 from text_processor import extract_words
+from publisher import WordPublisher
 
 logging.basicConfig(level=logging.INFO, format='%(message)s')
+publisher = WordPublisher()
 
 def run_miner():
     client = GitHubClient()
@@ -61,7 +63,7 @@ def run_miner():
                         clean_words = extract_words(name)
                         
                         if clean_words:
-                            print(f"    Words extracted from '{name}': {clean_words}")
+                           publisher.publish(clean_words, lang)
                             
         page += 1
         logging.info("\nPasando a la siguiente página de popularidad en 5 segundos...")
