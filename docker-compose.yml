@@ -15,13 +15,13 @@ services:
       - REDIS_HOST=redis
       - GITHUB_TOKEN=${GITHUB_TOKEN}
 
-visualizer:
-  build:
-    context: ./visualizer
-  container_name: github-visualizer
-  ports:
-    - "8501:8501"
-  depends_on:
-    - redis
-  environment:
-    - REDIS_HOST=redis
+  visualizer:
+    build:
+      context: ./visualizer
+    container_name: github-visualizer
+    ports:
+      - "8501:8501"
+    depends_on:
+      - redis
+    environment:
+      - REDIS_HOST=redis
